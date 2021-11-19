@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859713845982",
+    "project_id": "learneredge-b5d20",
+    "storage_bucket": "learneredge-b5d20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859713845982:android:231144056d48b2b4a8604f",
+        "android_client_info": {
+          "package_name": "com.example.learner_edge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859713845982-c0ab8q51jqc8r6p2l2gqkbj1hv2vupk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2-INhEaNLOXfTCE2TpH7-oO5g64PasKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859713845982-c0ab8q51jqc8r6p2l2gqkbj1hv2vupk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
