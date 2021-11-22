@@ -11,20 +11,21 @@ class CreateTeacherService {
   CreateTeacherService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future addTeacher(String email, String name, String qualification, String slots) async {
+  Future addTeacher(String email, String name, String qualification, List<String> afternoonSlots, List<String> morningSlots) async {
     // creates new user with document ID = email ID
     await _firestore
-        .collection('students')
+        .collection('teachers')
         .doc(email)
         .set({
       'email': email,
       'name': name,
-      'qualification': qualification,
-      'slots': slots,
+      'afternoonSlots': afternoonSlots,
+      'morningSlots':morningSlots,
       'teacher': 1// John Doe
+
     })
         .then((value) {
-      print("Added Student");
+      print("Added Teacher");
       //TODO: find more efficient way to send email ID
     })
         .catchError((error) => print("Failed to add student: $error"));

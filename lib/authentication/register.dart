@@ -1,3 +1,4 @@
+import 'package:day_picker/day_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 //import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
@@ -5,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:learner_edge/services/auth.dart';
 import 'package:learner_edge/services/create_student.dart';
 import 'package:learner_edge/services/create_teacher.dart';
+import 'package:day_picker/model/day_in_week.dart';
 
 
 class Register extends StatefulWidget {
@@ -32,6 +34,7 @@ class _Register extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           // decoration: BoxDecoration(
           //   image: DecorationImage(
@@ -189,9 +192,36 @@ class _TeacherFormState extends State<TeacherForm> {
   String name="";
   String email="";
   String password="";
-  String slots="";
-  String qualification="";
+  //String slots="";
+  //String qualification="";
   String error="";
+  List<String> afternoonSlots=[];
+  List<String> morningSlots=[];
+
+  List<DayInWeek> _days = [
+    DayInWeek(
+      "Sun",
+    ),
+    DayInWeek(
+      "Mon",
+    ),
+    DayInWeek(
+      "Tue",
+    ),
+    DayInWeek(
+      "Wed",
+    ),
+    DayInWeek(
+      "Thu",
+    ),
+    DayInWeek(
+      "Fri",
+    ),
+    DayInWeek(
+        "Sat",
+        isSelected: true
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -220,42 +250,87 @@ class _TeacherFormState extends State<TeacherForm> {
               ),
             ),
             SizedBox(height: 20,),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15),
+            //   child: TextFormField(
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       labelText: 'Qualification',
+            //
+            //     ),
+            //     validator: (val) => val.isEmpty ? 'Enter qualification': null,
+            //     onChanged: (val) {
+            //       setState(() {
+            //         qualification=val;
+            //       });
+            //
+            //     },
+            //   ),
+            // ),
+            // SizedBox(height: 20,),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 15),
+            //   child: TextFormField(
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       labelText: 'Free Slots',
+            //
+            //     ),
+            //     validator: (val) => val.isEmpty ? 'Enter free slots': null,
+            //     onChanged: (val) {
+            //       setState(() {
+            //         slots=val;
+            //       });
+            //
+            //     },
+            //   ),
+            // ),
+            Text(
+              "Afternoon slots (2-5PM)"
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Qualification',
-
+              padding: const EdgeInsets.all(8.0),
+              child: SelectWeekDays(
+                fontSize:14,
+                fontWeight: FontWeight.w500,
+                days: _days,
+                border: false,
+                boxDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
-                validator: (val) => val.isEmpty ? 'Enter qualification': null,
-                onChanged: (val) {
-                  setState(() {
-                    qualification=val;
-                  });
-
+                //backgroundColor: Color(0xffffff),
+                onSelect: (values) {
+                  print(values);
+                  //print(values.runtimeType);
+                  afternoonSlots=values;
                 },
               ),
             ),
+
             SizedBox(height: 20,),
+            Text(
+                "Morning slots (9-12PM)"
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Free Slots',
-
+              padding: const EdgeInsets.all(8.0),
+              child: SelectWeekDays(
+                fontSize:14,
+                fontWeight: FontWeight.w500,
+                days: _days,
+                border: false,
+                boxDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
-                validator: (val) => val.isEmpty ? 'Enter free slots': null,
-                onChanged: (val) {
-                  setState(() {
-                    slots=val;
-                  });
-
+                //backgroundColor: Color(0xffffff),
+                onSelect: (values) {
+                  print(values);
+                  morningSlots=values;
                 },
               ),
             ),
+
             SizedBox(height: 20,),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
@@ -318,7 +393,7 @@ class _TeacherFormState extends State<TeacherForm> {
                       });
                     }
                     else {
-                      _newTeacher.addTeacher(email, name, qualification, slots);
+                      _newTeacher.addTeacher(email, name, qualification, afternoonSlots, morningSlots);
                     }
                   }
                 },
@@ -329,7 +404,7 @@ class _TeacherFormState extends State<TeacherForm> {
               error,
               style: TextStyle(color: Colors.red, fontSize: 14.0),
             ),
-            SizedBox(height: 60,),
+            SizedBox(height: 20,),
 
           ],
         ),
@@ -357,6 +432,7 @@ class _StudentFormState extends State<StudentForm> {
   String password="";
   String error="";
   String course="";
+
 
   @override
   Widget build(BuildContext context) {
