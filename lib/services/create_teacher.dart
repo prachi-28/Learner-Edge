@@ -11,7 +11,7 @@ class CreateTeacherService {
   CreateTeacherService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future addTeacher(String email, String name, String qualification, List<String> afternoonSlots, List<String> morningSlots) async {
+  Future addTeacher(String email, String name, List<String> afternoonSlots, List<String> morningSlots) async {
     // creates new user with document ID = email ID
     await _firestore
         .collection('teachers')
@@ -21,7 +21,7 @@ class CreateTeacherService {
       'name': name,
       'afternoonSlots': afternoonSlots,
       'morningSlots':morningSlots,
-      'teacher': 1// John Doe
+      'userType': 1// John Doe
 
     })
         .then((value) {

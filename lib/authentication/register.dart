@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 //import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:learner_edge/home/student_home.dart';
+import 'package:learner_edge/home/teacher_home.dart';
 import 'package:learner_edge/services/auth.dart';
 import 'package:learner_edge/services/create_student.dart';
 import 'package:learner_edge/services/create_teacher.dart';
@@ -393,8 +395,11 @@ class _TeacherFormState extends State<TeacherForm> {
                       });
                     }
                     else {
-                      _newTeacher.addTeacher(email, name, qualification, afternoonSlots, morningSlots);
+                      _newTeacher.addTeacher(email, name, afternoonSlots, morningSlots);
+
                     }
+
+
                   }
                 },
               ),
@@ -542,7 +547,9 @@ class _StudentFormState extends State<StudentForm> {
                     }
                     else {
                       _newStudent.addStudent(email, name, course);
+
                     }
+
                   }
                 },
               ),

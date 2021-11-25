@@ -19,7 +19,8 @@ class CreateStudentService {
         .set({
       'email': email,
       'name': name,
-      'course': course// John Doe
+      'course': course,
+      'userType': 0   // Student
     })
         .then((value) {
       print("Added Student");
