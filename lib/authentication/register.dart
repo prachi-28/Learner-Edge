@@ -8,6 +8,8 @@ import 'package:learner_edge/home/teacher_home.dart';
 import 'package:learner_edge/services/auth.dart';
 import 'package:learner_edge/services/create_student.dart';
 import 'package:learner_edge/services/create_teacher.dart';
+import 'package:learner_edge/services/create_afternoon_slots.dart';
+import 'package:learner_edge/services/create_morning_slots.dart';
 import 'package:day_picker/model/day_in_week.dart';
 
 
@@ -191,11 +193,12 @@ class _TeacherFormState extends State<TeacherForm> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   final CreateTeacherService _newTeacher = CreateTeacherService();
+
+
   String name="";
   String email="";
   String password="";
-  //String slots="";
-  //String qualification="";
+
   String error="";
   List<String> afternoonSlots=[];
   List<String> morningSlots=[];
@@ -252,86 +255,6 @@ class _TeacherFormState extends State<TeacherForm> {
               ),
             ),
             SizedBox(height: 20,),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 15),
-            //   child: TextFormField(
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       labelText: 'Qualification',
-            //
-            //     ),
-            //     validator: (val) => val.isEmpty ? 'Enter qualification': null,
-            //     onChanged: (val) {
-            //       setState(() {
-            //         qualification=val;
-            //       });
-            //
-            //     },
-            //   ),
-            // ),
-            // SizedBox(height: 20,),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 15),
-            //   child: TextFormField(
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       labelText: 'Free Slots',
-            //
-            //     ),
-            //     validator: (val) => val.isEmpty ? 'Enter free slots': null,
-            //     onChanged: (val) {
-            //       setState(() {
-            //         slots=val;
-            //       });
-            //
-            //     },
-            //   ),
-            // ),
-            Text(
-              "Afternoon slots (2-5PM)"
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SelectWeekDays(
-                fontSize:14,
-                fontWeight: FontWeight.w500,
-                days: _days,
-                border: false,
-                boxDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                //backgroundColor: Color(0xffffff),
-                onSelect: (values) {
-                  print(values);
-                  //print(values.runtimeType);
-                  afternoonSlots=values;
-                },
-              ),
-            ),
-
-            SizedBox(height: 20,),
-            Text(
-                "Morning slots (9-12PM)"
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SelectWeekDays(
-                fontSize:14,
-                fontWeight: FontWeight.w500,
-                days: _days,
-                border: false,
-                boxDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                //backgroundColor: Color(0xffffff),
-                onSelect: (values) {
-                  print(values);
-                  morningSlots=values;
-                },
-              ),
-            ),
-
-            SizedBox(height: 20,),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -350,6 +273,7 @@ class _TeacherFormState extends State<TeacherForm> {
                 },
               ),
             ),
+
             SizedBox(height: 20,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -369,6 +293,68 @@ class _TeacherFormState extends State<TeacherForm> {
                 },
               ),
             ),
+
+            SizedBox(height: 20,),
+
+            Text(
+              "Afternoon slots (1-2 PM)"
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SelectWeekDays(
+                fontSize:14,
+                fontWeight: FontWeight.w500,
+                days: _days,
+                border: false,
+                boxDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                //backgroundColor: Color(0xffffff),
+                onSelect: (values) {
+                  print(values);
+                  //print(values.runtimeType);
+                  afternoonSlots=values;
+                  int len=afternoonSlots.length;
+                  for(int i=0;i<len;i++)
+                    {
+                      CreateAfternoonSlotsService _newAfternoonSlot = CreateAfternoonSlotsService();
+                      _newAfternoonSlot.addAfternoonSlot(email, afternoonSlots[i]);
+                    }
+
+                },
+              ),
+            ),
+
+            SizedBox(height: 20,),
+            Text(
+                "Morning slots (11-12 PM)"
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SelectWeekDays(
+                fontSize:14,
+                fontWeight: FontWeight.w500,
+                days: _days,
+                border: false,
+                boxDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                //backgroundColor: Color(0xffffff),
+                onSelect: (values) {
+                  print(values);
+                  morningSlots=values;
+                  int len=morningSlots.length;
+
+                  for(int i=0;i<len;i++)
+                  {
+                    CreateMorningSlotsService _newMorningSlot = CreateMorningSlotsService();
+                    _newMorningSlot.addMorningSlot(email, morningSlots[i]);
+                  }
+                },
+              ),
+            ),
+
+
 
             SizedBox(height: 20,),
 
@@ -395,7 +381,7 @@ class _TeacherFormState extends State<TeacherForm> {
                       });
                     }
                     else {
-                      _newTeacher.addTeacher(email, name, afternoonSlots, morningSlots);
+                      _newTeacher.addTeacher(email, name);
 
                     }
 

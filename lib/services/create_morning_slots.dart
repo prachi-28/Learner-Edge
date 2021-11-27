@@ -5,26 +5,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:learner_edge/models/user.dart';
 import 'package:learner_edge/services/auth.dart';
 
-class CreateTeacherService {
+class CreateMorningSlotsService {
   //called on registration to set up new document under user collection
   //document ID of new document is the email ID entered on Registration -- guaranteed unique value
-  CreateTeacherService();
+  CreateMorningSlotsService();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future addTeacher(String email, String name) async {
+  Future addMorningSlot(String email, String day) async {
     // creates new user with document ID = email ID
     await _firestore
         .collection('teachers')
         .doc(email)
+        .collection('morning_slots')
+        .doc(day)
         .set({
-      'email': email,
-      'name': name,
+      'slot': true
 
     })
         .then((value) {
-      print("Added Teacher");
-      //TODO: find more efficient way to send email ID
+      print("Added morning slot");
+
     })
-        .catchError((error) => print("Failed to add student: $error"));
+        .catchError((error) => print("Failed to add morning slot: $error"));
   }
 }

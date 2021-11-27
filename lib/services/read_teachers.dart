@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// Import the firebase_core and cloud_firestore plugin
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:learner_edge/models/user.dart';
-import 'package:learner_edge/services/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:learner_edge/models/slot_data.dart';
+import 'package:learner_edge/home/book_slot_page.dart';
 
 class ReadUserClass
 {
@@ -14,6 +12,7 @@ class ReadUserClass
 
   final Stream<QuerySnapshot> _usersStream =
   FirebaseFirestore.instance.collection('teachers').snapshots();
+  //final slotData=SlotData()
 
   CollectionReference users = FirebaseFirestore.instance.collection('teachers');
 
@@ -37,24 +36,32 @@ class ReadUserClass
               return new ListTile(
                 title: new Text(document.data()['name']),
                 subtitle: new Text(document.data()['email']),
-                trailing: new Text('Test'),
-                // subtitle: Align(
-                //   alignment: Alignment.bottomLeft,
-                //   child: new FlatButton(
-                //     onPressed: () {
-                //
-                //     },
-                //     // padding: EdgeInsets.all(20),
-                //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                //
-                //     child: Text(
-                //       'Book',
-                //       style: TextStyle(
-                //         color: HexColor("#e16428"),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                trailing: new IconButton(
+                  icon: const Icon(Icons.group_add_rounded),
+                  color: HexColor("#ffffff"),
+                  tooltip: 'Book a slot',
+                  onPressed: (){
+
+                    final slotData=SlotData(
+                      name: document.data()['name'],
+                      email: document.data()['email'],
+                      // afternoonSlot: document.data()['afternoonSlots'],
+                      // morningSlot: document.data()['morningSlots']
+
+                    );
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BookSlotPage(
+                          data: slotData,
+                        )
+                      ),
+                    );
+
+
+                  },
+                ),
               );
             }).toList(),
           ),
