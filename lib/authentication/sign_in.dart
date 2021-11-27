@@ -119,37 +119,6 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
 
-              // SizedBox(
-              //   width: 300,
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       primary: Colors.white,
-              //     ),
-              //
-              //
-              //     child: Text(
-              //       'Sign in with Google',
-              //       style: TextStyle(
-              //         color: HexColor("#e16428"),
-              //       ),
-              //     ),
-              //     onPressed: () async {
-              //
-              //       dynamic result = await _auth.signInWithGoogle();
-              //       if(result==null){
-              //         setState(() {
-              //           error="Could not sign in with those credentials";
-              //         });
-              //       }
-              //
-              //
-              //     },
-              //
-              //
-              //   ),
-              // ),
-
-
 
               SizedBox(height: 100,),
               Text(

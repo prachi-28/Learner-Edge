@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learner_edge/models/slot_data.dart';
+import 'package:learner_edge/services/read_slots.dart';
 
 
 class BookSlotPage extends StatefulWidget {
@@ -11,67 +12,68 @@ class BookSlotPage extends StatefulWidget {
 }
 
 class _BookSlotPageState extends State<BookSlotPage> {
-
+  ReadSlotsClass _getslots = ReadSlotsClass();
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(''),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
         padding: EdgeInsets.all(10.0),
 
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.center,
-              height: 50,
-              padding: EdgeInsets.all(12),
-              child: Text('One step closer to meeting your prof!',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-              ),
-              ),
-            ),
-            SizedBox(height: 40,),
+
+            SizedBox(height: 20,),
             Text('${widget.data.name}',
             style: TextStyle(
               fontSize: 30,
             ),
             ),
 
-            SizedBox(height: 7,),
-            Text('${widget.data.email}',
-              style: TextStyle(
-                fontSize: 12,
-              ),
-            ),
+            // SizedBox(height: 7,),
+            // Text('${widget.data.email}',
+            //   style: TextStyle(
+            //     fontSize: 12,
+            //   ),
+            // ),
 
-            SizedBox(height: 30,),
+            SizedBox(height: 20,),
             Text('Morning Slot (11-12 PM)',
               textAlign: TextAlign.left,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 15,
               ),
             ),
 
-            SizedBox(height: 30,),
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: _getslots.readMorningSlots(widget.data.email),
+            ),
 
 
-            // Padding(
-            //   padding: EdgeInsets.all(20.0),
-            //   child: _afternoonSlots.ReadAfternoonSlots()[0],
-            // ),
+            Text('Afternoon Slot (12-1 PM)',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
 
-            //:: TODO get slot details from firebase using the email id
-            //:: TODO according to the number of slots, keep a counter to add buttons for slot
+
+            Padding(
+              padding: EdgeInsets.all(5.0),
+              child: _getslots.readAfternoonSlots(widget.data.email),
+            ),
+
 
           ],
         ),
       ),
-    );
+    ));
 
   }
 }

@@ -21,7 +21,8 @@ class _StudentHomeState extends State<StudentHome> {
       //color: Colors.red
       //child: Expanded(
       resizeToAvoidBottomInset: false,
-      body: Column(
+      body:SingleChildScrollView
+        (child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -59,7 +60,7 @@ class _StudentHomeState extends State<StudentHome> {
 
           ]),
       //),
-    );
+    ));
   }
 }
 
