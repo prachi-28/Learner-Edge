@@ -19,7 +19,8 @@ class CreateAfternoonSlotsService {
         .collection('afternoon_slots')
         .doc(day)
         .set({
-      'slot': true
+      'slot': true,
+      'count': 0
 
     })
         .then((value) {

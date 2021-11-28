@@ -103,6 +103,7 @@ class ReadSlotsClass
             padding: const EdgeInsets.only(top: 0),
             child: ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
+
                 return new ListTile(
 
                   title: new Text(document.id,
@@ -115,6 +116,8 @@ class ReadSlotsClass
                     color: HexColor("#ffffff"),
                     tooltip: 'Book a slot',
                     onPressed: (){
+
+                      // :: TODO Function to delete this slot from teacher's schema-> delete this document id
 
                       final callData=CallData(
                         studentEmail: user.email,

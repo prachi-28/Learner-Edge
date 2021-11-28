@@ -19,7 +19,8 @@ class CreateMorningSlotsService {
         .collection('morning_slots')
         .doc(day)
         .set({
-      'slot': true
+      'slot': true,
+      'count': 1
 
     })
         .then((value) {
