@@ -5,4 +5,6 @@ Learner Edge is an application that bridges the gap between a student and a teac
 
 ## Instructions
 First, clone the repository with the 'clone' command, or just download the zip.
+```
 git clone https://github.com/prachi-28/Learner-Edge.git
+```
