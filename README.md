@@ -1,6 +1,7 @@
-# learner_edge
+# Learner Edge
 
-A new Flutter application.
+Learner Edge is an application that bridges the gap between a student and a teacher in the pandemic era. It lets students book personal appointments from their teachers for one to one doubt clearance/mentoring. Students can view their teachers’ free slots and book an appointment with them. The teachers can view the list of students who have booked slots with them. 
+
 
 ## Getting Started
 
