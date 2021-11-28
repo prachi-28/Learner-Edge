@@ -17,4 +17,8 @@ dart pub get
 ```
 Please make sure to set environment variable to Dart. Go to File->Settings->Language and Framework and enter the dart sdk path.
 
+Alternatively, the apk file can be fount at 
+```
+build\app\outputs\flutter-apk\app-release.apk
+```
 There you go, you can now open and run the project. Enjoy!
