@@ -18,15 +18,18 @@ class ReadSlotsClass
 
   StreamBuilder readAfternoonSlots(String email)
   {
+    final String _afternoonSlot="12-1 PM";
     String docID = email;
     Stream<QuerySnapshot> _friendsStream =
     FirebaseFirestore.instance.collection('teachers').doc(docID).collection('afternoon_slots').snapshots();
     User user = FirebaseAuth.instance.currentUser;
 
 
+
     return StreamBuilder<QuerySnapshot>(
       stream: _friendsStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+
         if (snapshot.hasError) {
           return Text('Something went wrong');
         }
@@ -39,33 +42,60 @@ class ReadSlotsClass
           width: 500,
           child: ListView(
             children: snapshot.data.docs.map((DocumentSnapshot document) {
+              bool check=true;
+              print(document.data()['count']);
+              if(document.data()['count']==0) {
+                check=false;
+              }
+
               return Padding(
                 padding: const EdgeInsets.only(top: 0),
                 child: new ListTile(
-                    // onTap: () {
-                    //   _getEmail.setEmail(document.data()['femail']);
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => addTransactionFriend(email: document.data()['femail'])
-                    //     ),
-                    //   );
-                    //
-                    // },
-                    title: new Text(document.id,
+
+                    title: check==true?
+                    Text(document.id,
                       style: TextStyle(
                           fontSize: 12
                       ),
+                    ) :Text('${document.id}: This slot is booked',
+                      style: TextStyle(
+                        color: HexColor("#75E6DA"),
+                        fontSize: 12
                     ),
-                  trailing: new IconButton(
+                    ),
+                  trailing: check==true?
+                  IconButton(
                     icon: const Icon(Icons.add_call),
                     color: HexColor("#ffffff"),
                     tooltip: 'Book a slot',
                     onPressed: (){
 
 
+                      final callData=CallData(
+                          studentEmail: user.email,
+                          teacherEmail: email,
+                          day: document.id,
+                          slot: _afternoonSlot
+                      );
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SuccessSlotBook(
+                              data: callData,
+                            )
+                        ),
+                      );
+
+
+
 
                     },
+                  )
+                      :IconButton(
+                    onPressed: (){null;},
+                    icon: const Icon(Icons.add_call),
+                    color: HexColor("#75E6DA"),
                   ),
 
                 ),
@@ -80,6 +110,7 @@ class ReadSlotsClass
 
   StreamBuilder readMorningSlots(String email)
   {
+    final String _morningSlot="11-12 PM";
     String docID = email;
     Stream<QuerySnapshot> _friendsStream =
     FirebaseFirestore.instance.collection('teachers').doc(docID).collection('morning_slots').snapshots();
@@ -103,31 +134,40 @@ class ReadSlotsClass
             padding: const EdgeInsets.only(top: 0),
             child: ListView(
               children: snapshot.data.docs.map((DocumentSnapshot document) {
+                bool check=true;
+                print(document.data()['count']);
+                if(document.data()['count']==0) {
+                  check=false;
+                }
 
                 return new ListTile(
 
-                  title: new Text(document.id,
-                  style: TextStyle(
-                    fontSize: 12
+                  title: check==true?
+                  Text(document.id,
+                    style: TextStyle(
+                        fontSize: 12
+                    ),
+                  ) :Text('${document.id}: This slot is booked',
+                    style: TextStyle(
+                        color: HexColor("#75E6DA"),
+                        fontSize: 12
+                    ),
+
                   ),
-                  ),
-                  trailing: new IconButton(
+                  trailing: check==true?
+                  IconButton(
                     icon: const Icon(Icons.add_call),
                     color: HexColor("#ffffff"),
                     tooltip: 'Book a slot',
                     onPressed: (){
 
-                      // :: TODO Function to delete this slot from teacher's schema-> delete this document id
 
                       final callData=CallData(
                         studentEmail: user.email,
-                        teacherEmail: email
-
+                        teacherEmail: email,
+                        day: document.id,
+                        slot: _morningSlot
                       );
-
-                      // :: TODO icon button ko grey out karna hai
-                      // :: TODO Teacher view
-                      // :: TODO mailer
 
                       Navigator.push(
                         context,
@@ -142,6 +182,11 @@ class ReadSlotsClass
 
 
                     },
+                  )
+                  :IconButton(
+                      onPressed: (){null;},
+                      icon: const Icon(Icons.add_call),
+                    color: HexColor("#75E6DA"),
                   ),
 
                 );

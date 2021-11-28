@@ -59,10 +59,17 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_automation: null
+
+flutter_icons:
+  image_path: "icon/icon.png"
+  android: true
+  ios: true
+
 
 
 # For information on the generic Dart part of this file, see the
