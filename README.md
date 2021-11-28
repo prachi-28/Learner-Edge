@@ -8,3 +8,12 @@ First, clone the repository with the 'clone' command, or just download the zip.
 ```
 git clone https://github.com/prachi-28/Learner-Edge.git
 ```
+Then, download either Android Studio or Visual Studio Code, with their respective Flutter editor plugins. 
+
+Install dependencies from pubspec.yaml by running flutter packages get from the project root (see using packages documentation for details and how to do this in the editor).
+
+```
+dart pub get
+```
+
+There you go, you can now open the project. Enjoy!
