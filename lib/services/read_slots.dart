@@ -38,7 +38,7 @@ class ReadSlotsClass
           return Text("Loading");
         }
         return Container(
-          height: 200,
+          height: 250,
           width: 500,
           child: ListView(
             children: snapshot.data.docs.map((DocumentSnapshot document) {
@@ -128,7 +128,7 @@ class ReadSlotsClass
           return Text("Loading");
         }
         return Container(
-          height: 200,
+          height: 250,
           width: 500,
           child: Padding(
             padding: const EdgeInsets.only(top: 0),

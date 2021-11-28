@@ -35,7 +35,10 @@ class ReadUserClass
             children: snapshot.data.docs.map((DocumentSnapshot document) {
               return new ListTile(
                 title: new Text(document.data()['name']),
-                subtitle: new Text(document.data()['email']),
+                subtitle: new Text(document.data()['email'],
+                style: TextStyle(
+                  color: HexColor('#189AB4')
+                ),),
                 trailing: new IconButton(
                   icon: const Icon(Icons.group_add_rounded),
                   color: HexColor("#ffffff"),
@@ -45,8 +48,6 @@ class ReadUserClass
                     final slotData=SlotData(
                       name: document.data()['name'],
                       email: document.data()['email'],
-                      // afternoonSlot: document.data()['afternoonSlots'],
-                      // morningSlot: document.data()['morningSlots']
 
                     );
 

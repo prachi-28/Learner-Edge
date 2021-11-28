@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:learner_edge/models/call_data.dart';
 import 'package:learner_edge/services/confirm_slot.dart';
 import 'package:learner_edge/services/delete_slot.dart';
@@ -26,23 +27,12 @@ class _SuccessSlotBookState extends State<SuccessSlotBook> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(''),
+        elevation: 0,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 0,horizontal: 40),
         child: Column(
           children: [
-            // Padding(
-            //     padding: EdgeInsets.only(top: 100.0),
-            //   child: Center(
-            //     child: Container(
-            //       width: 500,
-            //       height: 200,
-            //       child: SvgPicture.asset(
-            //         "images/success.svg",
-            //       ),
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: 65,),
             Center(
               child: ElevatedButton(
@@ -54,7 +44,7 @@ class _SuccessSlotBookState extends State<SuccessSlotBook> {
                    _delSlot.DeleteSlotStudent(widget.data.teacherEmail, widget.data.slot, widget.data.day);
                     clearText();
                     Fluttertoast.showToast(
-                        msg: "Slot confirmed. You may go back to home.",
+                        msg: "Slot confirmed. Meeting link will be sent soon!",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.CENTER,
                         timeInSecForIosWeb: 1,
@@ -70,9 +60,12 @@ class _SuccessSlotBookState extends State<SuccessSlotBook> {
 
             Padding(
                 padding: EdgeInsets.only(top: 80),
-              child: Text('For ${widget.data.day}',
+              child: Text('On ${widget.data.day}',
+
               style: TextStyle(
-                fontSize: 25
+                fontSize: 35,
+                color: HexColor('#189AB4')
+
               ),),
             ),
             SizedBox(height: 10,),
@@ -83,7 +76,8 @@ class _SuccessSlotBookState extends State<SuccessSlotBook> {
             SizedBox(height: 30,),
             Padding(
               padding: EdgeInsets.all(10),
-              child: Text('${widget.data.teacherEmail}'),
+              child: Text('${widget.data.teacherEmail}',
+             ),
             ),
 
             Padding(

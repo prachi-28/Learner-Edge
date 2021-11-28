@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 
 class ReadStudentsClass
@@ -33,7 +34,10 @@ class ReadStudentsClass
             children: snapshot.data.docs.map((DocumentSnapshot document) {
               return new ListTile(
                 title: new Text(document.id),
-                subtitle: new Text(document.data()['day']),
+                subtitle: new Text(document.data()['day'],
+                  style: TextStyle(
+                      color: HexColor('#189AB4')
+                  ),),
                 trailing: new Text(document.data()['slot']),
               );
             }).toList(),

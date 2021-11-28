@@ -32,16 +32,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           primaryColor: HexColor(_darkColour),
-          // accentColor: HexColor(_lightColour),
-
-          // backgroundColor: HexColor(_darkColour), //pale pink
           scaffoldBackgroundColor: HexColor(_darkColour),
-          //dialogBackgroundColor: HexColor("#f3dee8"),
-          // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          //   backgroundColor: HexColor(_lightColour),
-          //   selectedItemColor: HexColor(_contrastColour),
-          //   unselectedItemColor: HexColor(_darkColour),
-          // ),
+
           buttonTheme: ButtonThemeData(
             buttonColor: HexColor(_lightColour),
             // textTheme: ButtonTextTheme.accent,

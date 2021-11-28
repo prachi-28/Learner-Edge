@@ -26,31 +26,33 @@ class _StudentHomeState extends State<StudentHome> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 70, left: 16, right: 16),
-              child: Text(
-                'Book a slot!',
-                style: TextStyle(
-                  color: HexColor("#ffffff"),
-                  fontSize: 35,
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 70, left: 16, right: 16),
+                  child: Text(
+                    'Book a slot!',
+                    style: TextStyle(
+                      color: HexColor("#ffffff"),
+                      fontSize: 35,
+                    ),
+                  ),
                 ),
-              ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 70, left: 60),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _auth.signOut();
+                    },
+                    // padding: EdgeInsets.all(20),
+                    child: Text(
+                      'Logout',
+                    ),
+                  ),
+                ),
+              ],
             ),
-
-      FlatButton(
-           onPressed: () {
-             _auth.signOut();
-           },
-           // padding: EdgeInsets.all(20),
-           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-           child: Text(
-             'Logout',
-             style: TextStyle(
-               color: HexColor("#e16428"),
-             ),
-           ),
-         ),
-
 
             Padding(
               padding: EdgeInsets.all(20.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:learner_edge/models/slot_data.dart';
 import 'package:learner_edge/services/read_slots.dart';
 
@@ -20,6 +21,7 @@ class _BookSlotPageState extends State<BookSlotPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(''),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
       child: Container(
@@ -47,6 +49,7 @@ class _BookSlotPageState extends State<BookSlotPage> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 15,
+                  color: HexColor('#189AB4')
               ),
             ),
 
@@ -60,6 +63,7 @@ class _BookSlotPageState extends State<BookSlotPage> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 15,
+                  color: HexColor('#189AB4')
               ),
             ),
 

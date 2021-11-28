@@ -96,13 +96,8 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 width: 300,
                 child: ElevatedButton(
-
-
-                  child: Text(
+                child: Text(
                     'Sign in',
-                    // style: TextStyle(
-                    //     color: Colors.white
-                    // ),
                   ),
                   onPressed: () async {
                     if(_formKey.currentState.validate()){
@@ -114,9 +109,7 @@ class _SignInState extends State<SignIn> {
                       }
                     }
                   },
-
-
-                ),
+           ),
               ),
 
 
