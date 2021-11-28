@@ -15,5 +15,6 @@ Install dependencies from pubspec.yaml by running flutter packages get from the 
 ```
 dart pub get
 ```
+Please make sure to set environment variable to Dart. Go to File->Settings->Language and Framework and enter the dart sdk path.
 
 There you go, you can now open the project. Enjoy!
