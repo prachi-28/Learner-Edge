@@ -21,4 +21,4 @@ Alternatively, the apk file can be found at
 ```
 build\app\outputs\flutter-apk\app-release.apk
 ```
-There you go, you can now open and run the project. Enjoy!
+There you go, you can now open and run the project. 
